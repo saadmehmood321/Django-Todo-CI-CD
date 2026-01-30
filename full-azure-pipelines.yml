@@ -1,0 +1,55 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  dockerHubUsername: <your-dockerhub-username>       # Docker Hub username
+  imageName: <your-dockerhub-repo-name>             # Docker Hub repo name
+  tag: <your-image-tag>                             # Docker image tag
+  azureWebAppName: <your-azure-webapp-name> # Azure Web App name
+  azureServiceConnection: <your-azure-service-connection-name>  # Azure Service Connection name
+
+stages:
+
+# -------------------------------
+# Stage 1: Build & Push Docker Image
+# -------------------------------
+- stage: BuildAndPush
+  displayName: Build & Push Docker Image
+  jobs:
+  - job: BuildPush
+    displayName: Build and Push
+    steps:
+    - task: Docker@2
+      displayName: Build & Push Image
+      inputs:
+        command: buildAndPush
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        repository: $(dockerHubUsername)/$(imageName)
+        containerRegistry: <your-dockerhub-service-connection-name>  # Docker Hub Service Connection name
+        tags: |
+          $(tag)
+
+# -------------------------------
+# Stage 2: Deploy to Azure Web App
+# -------------------------------
+- stage: Deploy
+  displayName: Deploy to Azure Web App
+  dependsOn: BuildAndPush
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy to Azure
+    environment: 'development'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureWebAppContainer@1
+            displayName: Deploy Docker Image to Azure Web App
+            inputs:
+              azureSubscription: $(azureServiceConnection)
+              appName: $(azureWebAppName)
+              containers: |
+                $(dockerHubUsername)/$(imageName):$(tag)
