@@ -1,18 +1,71 @@
-.page-header {
-  margin-top: 30px;
+/* Background styling (Optional - body par apply karein) */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
 }
 
-.fa-trash-alt {
-  color: red;
-  float: right;
-  cursor: pointer;
+/* Card Styling */
+.todo-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.todo-header h2 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* Input Styling */
+.custom-input {
+    border: 2px solid #eee;
+    padding: 12px;
+    border-radius: 10px 0 0 10px !important;
+}
+
+.custom-input:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+/* Todo Items */
+.todo-item {
+    border: none !important;
+    margin-bottom: 8px;
+    border-radius: 10px !important;
+    transition: all 0.3s ease;
+    padding: 15px !important;
+}
+
+.todo-item:hover {
+    background-color: #f1f7ff;
+    transform: translateX(5px);
 }
 
 .todo-complete {
-  text-decoration: line-through;
+    background-color: #fdfdfd;
 }
 
-.todo-status-checkbox {
-  cursor: pointer;
-  margin-right: 10px;
+.todo-complete .todo-text {
+    text-decoration: line-through;
+    color: #adb5bd;
+}
+
+/* Checkbox and Icons */
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    color: #ff4d4d;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+
+.delete-btn:hover {
+    color: #cc0000;
+    transform: scale(1.2);
 }
