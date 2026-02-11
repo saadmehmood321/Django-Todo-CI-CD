@@ -1,71 +1,104 @@
-/* Background styling (Optional - body par apply karein) */
+/* Background Mixture (Black & Dark Grey) */
 body {
-    background-color: #f8f9fa;
+    background: radial-gradient(circle at center, #2c3e50 0%, #000000 100%);
+    color: #ffffff;
     font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
 }
 
 /* Card Styling */
 .todo-card {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    border: 1px solid #333;
 }
 
-.todo-header h2 {
-    color: #333;
-    margin-bottom: 0.5rem;
+/* Alignment & Gap Fix */
+.todo-wrapper {
+    display: flex;
+    align-items: center; /* Checkbox aur text ko vertical line mein karta hai */
+    gap: 15px; /* Checkbox aur text ke darmiyan space */
+    flex: 1;
 }
 
-/* Input Styling */
+.custom-checkbox {
+    width: 22px !important;
+    height: 22px !important;
+    cursor: pointer;
+    background-color: #333;
+    border: 2px solid #555;
+    flex-shrink: 0; /* Checkbox ko dabne se rokta hai */
+}
+
+.todo-text {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    transition: 0.3s;
+}
+
+/* Rainbow Animated Line */
+.rainbow-line {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    background-size: 200% 100%;
+    animation: rainbow-move 3s linear infinite;
+    border-radius: 10px;
+}
+
+@keyframes rainbow-move {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Input & Buttons */
 .custom-input {
-    border: 2px solid #eee;
-    padding: 12px;
+    background: #252525 !important;
+    border: 1px solid #444 !important;
+    color: white !important;
+    padding: 12px 20px;
     border-radius: 10px 0 0 10px !important;
 }
 
 .custom-input:focus {
     box-shadow: none;
-    border-color: #0d6efd;
+    border-color: #0d6efd !important;
 }
 
-/* Todo Items */
+.btn-primary {
+    border-radius: 0 10px 10px 0 !important;
+}
+
+/* List Items */
 .todo-item {
+    background: transparent !important;
     border: none !important;
-    margin-bottom: 8px;
-    border-radius: 10px !important;
-    transition: all 0.3s ease;
-    padding: 15px !important;
+    border-bottom: 1px solid #2a2a2a !important;
+    padding: 15px 0 !important;
 }
 
 .todo-item:hover {
-    background-color: #f1f7ff;
-    transform: translateX(5px);
-}
-
-.todo-complete {
-    background-color: #fdfdfd;
+    background: rgba(255, 255, 255, 0.02) !important;
+    transform: scale(1.01);
+    transition: 0.2s;
 }
 
 .todo-complete .todo-text {
     text-decoration: line-through;
-    color: #adb5bd;
+    color: #666 !important;
 }
 
-/* Checkbox and Icons */
-.custom-checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
+/* Delete Button */
 .delete-btn {
-    color: #ff4d4d;
-    font-size: 1.1rem;
-    transition: transform 0.2s;
+    color: #ff4757;
+    font-size: 1.2rem;
+    padding-left: 10px;
+    transition: 0.3s;
 }
 
 .delete-btn:hover {
-    color: #cc0000;
+    color: #ff6b81;
     transform: scale(1.2);
 }
